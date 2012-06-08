@@ -1,4 +1,6 @@
-﻿Imports System.Net
+﻿' use http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-basic-express to compile.
+
+Imports System.Net
 Imports System.IO
 Imports System.Object
 
