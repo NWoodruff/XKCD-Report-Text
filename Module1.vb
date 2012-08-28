@@ -234,11 +234,39 @@ Module Module1
 
                     If sGratLatLon.Length() < 12 Then
 
-                        Dim aLatLon = sGratLatLon.Split(", ")
+                        Dim aLatLon() As String = sGratLatLon.Split(", ")
 
                         If aLatLon.Length() > 1 Then
 
-                            sAGratName(aLatLon(0) + 90, aLatLon(1) + 180) = sTitle
+                            Dim iLat As Integer = 0
+                            Dim iLon As Integer = 0
+
+                            Dim sLat As String = aLatLon(0)
+                            Dim sLon As String = aLatLon(1)
+
+                            Select Case sLat.Substring(0, 1)
+
+                                Case "-"
+                                    iLat = sLat + 90
+
+                                Case Else
+                                    iLat = sLat + 91
+
+                            End Select
+
+                            sLon = sLon.Trim()
+
+                            Select Case sLon.Substring(0, 1)
+
+                                Case "-"
+                                    iLon = sLon + 180
+
+                                Case Else
+                                    iLon = sLon + 181
+
+                            End Select
+
+                            sAGratName(iLat, iLon) = sTitle
                         End If
                     End If
 
@@ -292,7 +320,36 @@ Module Module1
                         sGratName = sGratName + ", " + aVals(2)
                         Dim bFound As Boolean = False
 
-                        sGratName = sAGratName(aVals(1) + 90, aVals(2) + 180)
+
+
+                        Dim iLat As Integer = 0
+                        Dim iLon As Integer = 0
+                        Dim sLat As String = aVals(1)
+                        Dim sLon As String = aVals(2)
+
+                        Select Case sLat.Substring(0, 1)
+
+                            Case "-"
+                                iLat = sLat + 90
+
+                            Case Else
+                                iLat = sLat + 91
+
+                        End Select
+
+                        Select Case sLon.Substring(0, 1)
+
+                            Case "-"
+                                iLon = sLon + 180
+
+                            Case Else
+                                iLon = sLon + 181
+
+                        End Select
+
+
+
+                        sGratName = sAGratName(iLat, iLon)
 
                         If sGratName Is Nothing Then
 
